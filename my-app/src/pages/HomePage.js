@@ -1,12 +1,17 @@
 import React from "react";
-
-import CardStarWars from "../components/CardStarWars";
 import Footer from "../components/Footer";
-export default function HomePage(){
-  return(
+import ListPerson from "../components/ListPerson";
+
+const HomePage = (props) => {
+  const { loading, people } = props;
+  return (
     <>
-    <CardStarWars />
-    <Footer /> 
+      <ListPerson
+        loading={loading}
+        people={people}
+      />
+      <Footer />
     </>
-  )
-}
+  );
+};
+export default HomePage;

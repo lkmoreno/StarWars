@@ -1,42 +1,40 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import PropTypes from "prop-types";
+import Typography from "@mui/material/Typography";
 
-export default function  Details(props) {
-  const { character } = props;
-  const { closeModal } = props;
-
+const Detail = (props) => {
+  const { people, closeModal, movies, planets } = props;
+ 
   return (
-    <Dialog open={true} onClose={closeModal} maxWidth="sm">
-      <DialogContent>
-        <img
-          src={pokemon.sprites.front_default}
-          alt={pokemon.name}
-          className="pokemon-imgmodal"
-        />
-        <div className="content"> 
-        <h3>{pokemon.name}</h3>
-        <p>Numero de pokemon: #{pokemon.id}</p>
-        
-        <div className="pokemon-type">
-          <p>Tipo de pokemon: </p>
-          {pokemon.types.map((type, idx) => {
-            return (
-              <div key={idx} className="pokemon-type-text">
-                {type.type.name}
-              </div>
-            );
-          })}
-        </div>
-        <p>Experiencia base: {pokemon.base_experience}</p>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <>
+      <Dialog open={true} onClose={closeModal} maxWidth="md">
+        <DialogContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {people.name}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h2">
+            Gender: {people.gender}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h2">
+            Movies participe:
+          </Typography>
+          {movies.map((m) => (
+            <>
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="h2"
+                key={m.title}
+              >
+                - {m.title}, Director: {m.director}
+              </Typography>
+            </>
+          ))}
+        </DialogContent>
+      </Dialog>
+    </>
   );
-}
-
-PokemonDetails.propTypes = {
-  closeModal: PropTypes.func,
-  character: PropTypes.object,
 };
+
+export default Detail;
